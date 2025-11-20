@@ -4,8 +4,8 @@
 
 .gws-slider,[gws-slider]{
 	
-	display: flex;
-	flex-direction: row;
+	display: flex !important;
+	flex-direction: row !important;
 	overflow-x: auto;
 	overflow-y: hidden;
 
