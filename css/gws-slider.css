@@ -6,6 +6,7 @@
 	
 	display: flex !important;
 	flex-direction: row !important;
+	flex-wrap: nowrap !important;
 	overflow-x: auto;
 	overflow-y: hidden;
 
