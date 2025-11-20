@@ -1,0 +1,76 @@
+:root{
+	--gws-slider-tint: var(--wp--preset--color--text,#000);
+}
+
+.gws-slider,[gws-slider]{
+	
+	display: flex;
+	flex-direction: row;
+	overflow-x: auto;
+	overflow-y: hidden;
+
+	scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+	&>*{
+		scroll-snap-align: center;
+		flex: 0 0 100%;
+	}
+}
+
+.gws-pager{
+	--gws-tint: var(--gws-slider-tint);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 1em;
+	margin: 0 auto 2rem;
+	span{
+		display: flex;
+		width: 1em;
+		aspect-ratio: 1 / 1;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		border-radius: 40px;
+		border: 2px solid var(--gws-tint);
+		background: #FFF;
+		cursor: pointer;
+
+		&.active{
+			background: var(--gws-tint);
+		}
+
+		&:hover{
+			background: rgb(from var(--gws-tint) r g b / 0.25);
+		}
+	}
+}
+
+.gws-controls{
+	--gws-tint: var(--gws-slider-tint);
+	display: block;
+	display: flex;
+	justify-content: space-between;
+
+	button{
+		border: 2px solid var(--gws-tint);
+		background: transparent;
+		height: 3em;
+		width: 3em;
+		border-radius: 50%;
+		cursor: pointer;
+
+		&:hover{
+			background: rgb(from var(--gws-tint) r g b / 0.25);
+		}
+
+		&::before{
+			content: '<';
+		}
+		&+button::before{
+			content: '>';
+		}
+	}
+}

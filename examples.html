@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Beispiel-Sliders</title>
+	<link rel="stylesheet" href="css/gws-slider.css">
+
+	<style>
+		:root{
+			font-family: system-ui;
+		}
+		body{
+			width: min(500px, 100%);
+		}
+
+		.partial{
+			width: 500px;
+		}
+		.partial>*{
+			width: 60%;
+			flex: 0 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<h1>GWS Slider</h1>
+	<h2>Beispiel: Volle breite (standard)</h2>
+	<div gws-slider="autoplay pager controls">
+		<img src="https://picsum.photos/500/500?1">
+		<img src="https://picsum.photos/500/500?2">
+		<img src="https://picsum.photos/500/500?3">
+		<img src="https://picsum.photos/500/500?4">
+	</div>
+	<h2>Beispiel: Feste breite</h2>
+	<div gws-slider="autoplay pager controls" class="partial">
+		<img src="https://picsum.photos/500/500?1">
+		<img src="https://picsum.photos/500/500?2">
+		<img src="https://picsum.photos/500/500?3">
+		<img src="https://picsum.photos/500/500?4">
+	</div>
+	<h2>Beispiel: Feste breite, keine Autoplay</h2>
+	<div gws-slider="pager controls" class="partial">
+		<img src="https://picsum.photos/500/500?1">
+		<img src="https://picsum.photos/500/500?2">
+		<img src="https://picsum.photos/500/500?3">
+		<img src="https://picsum.photos/500/500?4">
+	</div>
+
+	<h2>Beispiel: Ohne Steuerungselemente & schnelles Autoplay</h2>
+	<div gws-slider="autoplay-500">
+		<img src="https://picsum.photos/500/500?1">
+		<img src="https://picsum.photos/500/500?2">
+		<img src="https://picsum.photos/500/500?3">
+		<img src="https://picsum.photos/500/500?4">
+	</div>
+
+	<h2>Beispiel: wie oben aber mit Klassen anstatt gws-slider-Attribut</h2>
+	<div class="gws-slider autoplay-500">
+		<img src="https://picsum.photos/500/500?1">
+		<img src="https://picsum.photos/500/500?2">
+		<img src="https://picsum.photos/500/500?3">
+		<img src="https://picsum.photos/500/500?4">
+	</div>
+
+	<script src="js/gws-slider.js" defer></script>
+</body>
+</html>
