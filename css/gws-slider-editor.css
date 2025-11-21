@@ -3,12 +3,12 @@
 	gap:10px !important;
 	padding: 10px;
 	&:before{
-		content: "GWS Slidery";
+		content: "GWS Slider";
 		background: #FFC300;
 		color: #000;
 		font-size: .8em;
 		padding: 2px 4px;
-		align-self: flex-end;
+		align-self: flex-start;
 		margin-left: -11px;
 		margin-top: -11px;
 	}

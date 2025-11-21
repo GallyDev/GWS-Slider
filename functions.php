@@ -1,6 +1,6 @@
 <?php
 	// this file will be included by GWS-Debugian automatically
-	define('GWS_SLIDER_VERSION', '1.0.4');
+	define('GWS_SLIDER_VERSION', '1.0.5');
 	// MESSAGE_INFO for the Git-Commit-Message: Erster Klick im Pagination-Thumbnail war kaputt
 	// Use this format to generate Git-Commit-Message: "Vx.x.x - MESSAGE_INFO"
 	// The Git-Messages must be in german
