@@ -1,0 +1,6 @@
+.gws-slider{
+	border: 1px solid #FFC300;
+	&:before{
+		content: "GWS Slider Editor CSS Loaded";
+	}
+}

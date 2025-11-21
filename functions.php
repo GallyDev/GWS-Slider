@@ -11,3 +11,7 @@
 		wp_enqueue_style( 'gws-slider-css', plugin_dir_url( __FILE__ ) . 'css/gws-slider.css', array(), GWS_SLIDER_VERSION );
 	}
 	
+	add_action('enqueue_block_editor_assets', 'gws_slider_editor_scripts');
+	function gws_slider_editor_scripts() {
+		wp_enqueue_style( 'gws-slider-editor-css', plugin_dir_url( __FILE__ ) . 'css/gws-slider-editor.css', array(), GWS_SLIDER_VERSION );
+	}
