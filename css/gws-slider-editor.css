@@ -1,12 +1,13 @@
 .gws-slider{
 	border: 1px dashed #FFC300;
+	gap:0 !important;
 	&:before{
 		content: "GWS Slidery";
 		background: #FFC300;
 		color: #000;
 		font-size: .8em;
 		padding: 2px 4px;
-		gap:0;
+		align-self: flex-end;
 	}
 
 	&>*{
