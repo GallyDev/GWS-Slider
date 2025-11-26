@@ -27,7 +27,7 @@ window.addEventListener('load', () => {
 
 			page.addEventListener('click', () => {
 				slider.scrollTo({
-					left: page.index * slides[0].clientWidth,
+					left: slides[0].clientWidth * (page.index + (options.infinite ? 1 : 0)),
 					behavior: 'smooth'
 				});
 				clearInterval(slider.sliderInterval);
@@ -37,7 +37,9 @@ window.addEventListener('load', () => {
 			}
 			pager.appendChild(page);
 		});
-		if(options.pager) slider.parentNode.insertBefore(pager, slider.nextSibling);
+		if(options.pager
+		&& slides.length > 1)
+			slider.parentNode.insertBefore(pager, slider.nextSibling);
 
 		const controls = document.createElement('div');
 		controls.classList.add('gws-controls');
@@ -48,12 +50,25 @@ window.addEventListener('load', () => {
 		prevButton.addEventListener('click', () => {
 			slider.current--;
 			if (slider.current < 0) {
-				slider.current = 0;
+				if(options.infinite && options.carousel)
+					slider.current = -1;
+				else if(options.carousel)
+					slider.current = slides.length - 1;
+				else
+					slider.current = 0;
 			}
 			slider.scrollTo({
-				left: slider.current * slides[0].clientWidth,
+				left: slides[0].clientWidth * (slider.current + (options.infinite ? 1 : 0)),
 				behavior: 'smooth'
 			});
+			if(slider.current < 0){
+				setTimeout(() => {
+					slider.scrollTo({
+						left: slides[0].clientWidth * (slides.length),
+						behavior: 'instant'
+					});
+				}, 300);
+			};
 			clearInterval(slider.sliderInterval);
 		});
 		const nextButton = document.createElement('button');
@@ -61,28 +76,67 @@ window.addEventListener('load', () => {
 		nextButton.addEventListener('click', () => {
 			slider.current++;
 			if (slider.current >= slides.length) {
-				slider.current = slides.length - 1;
+				if(options.infinite && options.carousel)
+					slider.current = slides.length;
+				else if(options.carousel)
+					slider.current = 0;
+				else
+					slider.current = slides.length - 1;
 			}
 			const slide = slides[slider.current];
 			slider.scrollTo({
-				left: slider.current * slides[0].clientWidth,
+				left: slides[0].clientWidth * (slider.current + (options.infinite ? 1 : 0)),
 				behavior: 'smooth'
 			});
+			if(slider.current >= slides.length){
+				setTimeout(() => {
+					slider.scrollTo({
+						left: slides[0].clientWidth * (0 + (options.infinite ? 1 : 0)),
+						behavior: 'instant'
+					});
+				}, 300);
+			};
 			clearInterval(slider.sliderInterval);
 		});
 		controls.appendChild(prevButton);
 		controls.appendChild(nextButton);
-		if(options.controls) slider.parentNode.insertBefore(controls, slider.nextSibling);
+		if(options.controls
+		&& slides.length > 1)
+			slider.parentNode.insertBefore(controls, slider.nextSibling);
 		
 
 		if (options.autoplay) {
 			slider.sliderInterval = setInterval(() => {
-				slider.current = (slider.current + 1) % slides.length;
+				slider.current++;
+				if (slider.current >= slides.length) {
+					if(options.infinite)
+						slider.current = slides.length;
+					else
+						slider.current = 0;
+				}
 				slider.scrollTo({
-					left: slider.current * slides[0].clientWidth,
+					left: slides[0].clientWidth * (slider.current + (options.infinite ? 1 : 0)),
 					behavior: 'smooth'
 				});
+				if(slider.current >= slides.length){
+					setTimeout(() => {
+						slider.scrollTo({
+							left: slides[0].clientWidth * (0 + (options.infinite ? 1 : 0)),
+							behavior: 'instant'
+						});
+					}, 300);
+				};
 			}, options.autoplay === true ? 3000 : parseInt(options.autoplay));
+		}
+
+		if (options.infinite) {
+			const firstSlide = slides[0];
+			const lastSlide = slides[slides.length - 1];
+			const firstClone = firstSlide.cloneNode(true);
+			const lastClone = lastSlide.cloneNode(true);
+			slider.appendChild(firstClone);
+			slider.insertBefore(lastClone, firstSlide);
+			slider.scrollLeft = firstSlide.clientWidth;
 		}
 
 		slider.addEventListener('scroll', () => {

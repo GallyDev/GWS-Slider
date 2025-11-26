@@ -18,6 +18,10 @@
 		scroll-snap-align: center;
 		flex: 0 0 100%;
 	}
+
+	&.infinite,&[gws-slider*="infinite"],.no-scroll{
+		overflow-x: hidden;
+	}
 }
 
 .gws-pager{
